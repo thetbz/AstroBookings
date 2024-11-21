@@ -5,11 +5,12 @@ import { Component } from '@angular/core';
   imports: [],
   template: `
     <footer>
-      footer works!
+      <P>Por {{author}} / {{version}}</P>
     </footer>
   `,
   styles: ``
 })
 export class FooterComponent {
-
+  protected author: string = "Esteban Arana"
+  protected version: string = "Angular V19"
 }
