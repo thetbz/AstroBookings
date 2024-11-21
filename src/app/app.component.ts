@@ -15,5 +15,5 @@ import { FooterComponent } from './core/layout/footer/footer.component';
   styles: []
 })
 export class AppComponent {
-  protected title = '🚀 Astro Bookings';
+  title = '🚀 Astro Bookings';
 }
