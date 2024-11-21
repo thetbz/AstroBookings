@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, input, signal, WritableSignal } from '@angular/core';
+import { Author } from './author.type';
 
 @Component({
   selector: 'lab-footer',
   imports: [],
   template: `
     <footer>
-      <P>Por <a [href]="author.url">{{author.name}}</a> / {{version}}</P>
+      <P>{{appName()}} Por <a [href]="author.url">{{author.name}}</a> / {{version}}</P>
     <p>
-    @if (this.cookiesAcepted) {
+    @if (this.cookiesAcepted()) {
       <span>🍪 Cookies aceptadas</span>
     }@else{
       <button (click)="aceptarCookies()">Aceptar cookies</button>
@@ -18,15 +19,16 @@ import { Component } from '@angular/core';
   styles: ``
 })
 export class FooterComponent {
-  protected author = {
+  public appName = input<string>('');
+  protected author: Author = {
     name: 'Esteban Arana',
     url: 'https://jeje.com'
   }
   protected version: string = "Angular V19"
-  protected cookiesAcepted: boolean = false;
+  protected cookiesAcepted: WritableSignal<boolean> = signal<boolean>(false);
 
   protected aceptarCookies() {
-    this.cookiesAcepted = true;
+    this.cookiesAcepted.set(true);
     console.log('Cookies aceptadas');
   }
 }
